@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glasklart Fönsterputs – Boka tid</title>
+  <meta name="description" content="Fönsterputsning i toppklass. Boka tid direkt online. Prisräknare, bekräftelse via e‑post och .ics‑kalenderfil." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --brand:#0ea5e9; }
+    html { scroll-behavior:smooth; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    .glass { backdrop-filter:saturate(180%) blur(8px); background:rgba(255,255,255,.75); }
+    .ring-brand { box-shadow: 0 0 0 4px rgba(14,165,233,.15); }
+    /* Hide admin panel by default (revealed by JS routing to #admin) */
+    #adminPanel { display:none; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="1.5"/><path d="M4 12h16" stroke="currentColor" stroke-width="1.5"/><path d="M12 4v16" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="font-semibold">Glasklart Fönsterputs</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#tjanster" class="hover:text-sky-600">Tjänster</a>
+        <a href="#priser" class="hover:text-sky-600">Priser</a>
+        <a href="#boka" class="px-3 py-1.5 rounded-full bg-sky-600 text-white hover:bg-sky-700">Boka</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-sky-50 to-white"></div>
+    <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 relative">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 class="text-3xl md:text-5xl font-bold tracking-tight">Kristallklara fönster. <span class="text-sky-600">Boka på 60 sek.</span></h1>
+          <p class="mt-4 text-slate-600 text-lg">Vi putsar in- och utsida, tar med egen utrustning och lämnar alltid nöjd‑kund‑garanti. Se pris direkt och lås din tid.</p>
+          <div class="mt-6 flex gap-3">
+            <a href="#boka" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-sky-600 text-white font-medium hover:bg-sky-700">Boka tid</a>
+            <a href="#priser" class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-300 font-medium hover:border-sky-300 hover:text-sky-700">Se priser</a>
+          </div>
+          <div class="mt-4 text-sm text-slate-500">RUT‑avdrag hanteras på faktura. Inga dolda avgifter.</div>
+        </div>
+        <div class="relative">
+          <div class="absolute -inset-6 bg-sky-100/60 rounded-3xl rotate-1"></div>
+          <img alt="Skinande fönster" class="relative rounded-3xl shadow-xl" src="https://images.unsplash.com/photo-1610147323479-7cf6bbcf1648?q=80&w=1600&auto=format&fit=crop" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BADGES -->
+  <section class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-4 -mt-8 relative">
+    <div class="glass rounded-2xl p-4 shadow">
+      <p class="font-semibold">Snabb bokning</p>
+      <p class="text-sm text-slate-600">Bekräftelse direkt på skärmen + kalenderfil (.ics).</p>
+    </div>
+    <div class="glass rounded-2xl p-4 shadow">
+      <p class="font-semibold">Transparenta priser</p>
+      <p class="text-sm text-slate-600">Lev. utan överraskningar. Prisräknare nedan.</p>
+    </div>
+    <div class="glass rounded-2xl p-4 shadow">
+      <p class="font-semibold">Nöjd‑kund‑garanti</p>
+      <p class="text-sm text-slate-600">Vi åtgärdar om du inte är 100% nöjd.</p>
+    </div>
+  </section>
+
+  <!-- TJÄNSTER -->
+  <section id="tjanster" class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-2xl md:text-3xl font-bold">Tjänster</h2>
+    <div class="mt-6 grid md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-2xl p-6 shadow border border-slate-200">
+        <h3 class="font-semibold">Standardputs</h3>
+        <p class="text-sm text-slate-600 mt-1">In- & utsida av fönster. Snabbt och prydligt.</p>
+        <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
+          <li>1‑plans bostäder</li>
+          <li>Normal nedsmutsning</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow border border-slate-200">
+        <h3 class="font-semibold">Höghöjd / svårtillgängligt</h3>
+        <p class="text-sm text-slate-600 mt-1">Ex. över 3 m, stege eller speciell utrustning.</p>
+        <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
+          <li>Tillägg per fönster</li>
+          <li>Riskbedömning på plats</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow border border-slate-200">
+        <h3 class="font-semibold">Tillval</h3>
+        <p class="text-sm text-slate-600 mt-1">Karmar, bleck, inglasad balkong, uterum m.m.</p>
+        <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
+          <li>Fast pris enligt offert</li>
+          <li>Kan läggas på bokningen</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRISER / RÄKNARE -->
+  <section id="priser" class="max-w-6xl mx-auto px-4 py-16">
+    <div class="grid md:grid-cols-2 gap-8 items-start">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold">Priser</h2>
+        <p class="text-slate-600 mt-2">Exempelpriser inkl. RUT‑avdrag och moms. Ändra i räknaren för att se ungefärligt pris.</p>
+        <ul class="mt-4 text-sm text-slate-700 space-y-2">
+          <li>• Lägenhet (10 fönster): ca 600 kr</li>
+          <li>• Enplansvilla (20 fönster): ca 1 100 kr</li>
+          <li>• Tvåplansvilla (30 fönster): ca 1 700 kr</li>
+        </ul>
+        <p class="text-xs text-slate-500 mt-3">*Priser kan variera beroende på tillgänglighet och tillval.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow border border-slate-200">
+        <h3 class="font-semibold">Prisräknare</h3>
+        <div class="mt-4 grid gap-4">
+          <label class="text-sm">Antal fönster
+            <input id="calcWindows" type="number" min="1" value="10" class="mt-1 w-full rounded-xl border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-300 p-2"/>
+          </label>
+          <label class="text-sm inline-flex items-center gap-2">
+            <input id="calcInside" type="checkbox" checked class="rounded">
+            In- & utsida
+          </label>
+          <label class="text-sm inline-flex items-center gap-2">
+            <input id="calcHigh" type="checkbox" class="rounded">
+            Höghöjdstillägg (svårtillgängligt)
+          </label>
+          <div class="text-sm bg-slate-50 border border-slate-200 rounded-xl p-3">
+            <p>Pris per fönster: <span id="pricePerWindow" class="font-semibold"></span></p>
+            <p>Tillägg (höjd): <span id="priceHigh" class="font-semibold"></span></p>
+            <p class="mt-2 text-lg">Uppskattat totalpris: <span id="priceTotal" class="font-bold"></span></p>
+          </div>
+          <button id="calcUpdate" class="w-full py-2.5 rounded-xl bg-sky-600 text-white font-medium hover:bg-sky-700">Uppdatera pris</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOKNING -->
+  <section id="boka" class="max-w-6xl mx-auto px-4 py-16">
+    <div class="bg-white rounded-2xl p-6 shadow border border-slate-200">
+      <h2 class="text-2xl md:text-3xl font-bold">Boka tid</h2>
+      <p class="text-slate-600 mt-2">Fyll i dina uppgifter nedan. Vi bekräftar via e‑post. Du får även en kalenderfil (.ics).</p>
+      <form id="bookingForm" class="mt-6 grid md:grid-cols-2 gap-6">
+        <div class="grid gap-3">
+          <label class="text-sm">Namn<input required name="name" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-sky-300"/></label>
+          <label class="text-sm">E‑post<input required type="email" name="email" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-sky-300"/></label>
+          <label class="text-sm">Telefon<input required name="phone" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-sky-300"/></label>
+          <label class="text-sm">Adress<input required name="address" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-sky-300"/></label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="text-sm">Postnr<input required name="zip" pattern="\d{3}\s?\d{2}" title="Ange t.ex. 123 45" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-sky-300"/></label>
+            <label class="text-sm">Ort<input required name="city" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-sky-300"/></label>
+          </div>
+        </div>
+        <div class="grid gap-3">
+          <label class="text-sm">Antal fönster<input required type="number" min="1" name="windows" value="10" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-sky-300"/></label>
+          <label class="text-sm">Önskat datum & tid
+            <input required type="datetime-local" name="datetime" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+          </label>
+          <label class="text-sm inline-flex items-center gap-2"><input type="checkbox" name="insideOutside" checked class="rounded"> In- & utsida</label>
+          <label class="text-sm inline-flex items-center gap-2"><input type="checkbox" name="highAccess" class="rounded"> Höghöjd / svårtillgängligt</label>
+          <label class="text-sm">Meddelande (valfritt)
+            <textarea name="notes" rows="3" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-sky-300" placeholder="T.ex. uterum, inglasad balkong…"></textarea>
+          </label>
+          <div class="flex items-center gap-3">
+            <button class="flex-1 py-2.5 rounded-xl bg-sky-600 text-white font-medium hover:bg-sky-700" type="submit">Skicka bokning</button>
+            <button class="px-4 py-2 rounded-xl border border-slate-300 hover:border-sky-300" type="button" id="btnReset">Rensa</button>
+          </div>
+        </div>
+      </form>
+      <p class="text-xs text-slate-500 mt-3">Genom att boka godkänner du våra <a href="#" class="underline">villkor</a> och <a href="#" class="underline">integritetspolicy</a>.</p>
+    </div>
+
+    <!-- Bekräftelse -->
+    <div id="confirm" class="hidden mt-6 bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-2xl p-4">
+      <p class="font-semibold">Tack! Din bokningsförfrågan är skickad.</p>
+      <p class="text-sm mt-1">En sammanfattning har sparats lokalt på den här enheten. Ladda ned en kalenderfil nedan och/eller skicka ett mejl till oss.</p>
+      <div class="mt-3 flex flex-wrap gap-3">
+        <a id="btnICS" class="inline-flex items-center px-4 py-2 rounded-xl bg-emerald-600 text-white hover:bg-emerald-700" href="#">Ladda ned .ics</a>
+        <a id="btnEmail" class="inline-flex items-center px-4 py-2 rounded-xl border border-emerald-600 text-emerald-700 hover:bg-emerald-100" href="#">Skicka mejl</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-2xl md:text-3xl font-bold">Vanliga frågor</h2>
+    <div class="mt-6 grid md:grid-cols-2 gap-6 text-sm text-slate-700">
+      <div class="bg-white rounded-2xl p-6 shadow border border-slate-200">
+        <p class="font-semibold">Ingår RUT‑avdrag?</p>
+        <p>Ja, vi hanterar RUT på faktura. Priserna i räknaren är ungefärliga efter RUT.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow border border-slate-200">
+        <p class="font-semibold">Vad kostar det?</p>
+        <p>Baspris per fönster + ev. höghöjdstillägg. Använd räknaren för uppskattning och bekräfta i din bokning.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow border border-slate-200">
+        <p class="font-semibold">Behöver jag vara hemma?</p>
+        <p>För insida: ja. För utsida: inte nödvändigt om tillgång finns. Skriv i meddelandet.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow border border-slate-200">
+        <p class="font-semibold">Ställer ni upp stege?</p>
+        <p>Ja vid behov och efter riskbedömning. Tillägg kan tillkomma.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="max-w-6xl mx-auto px-4 py-8 text-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <p>© <span id="year"></span> Glasklart Fönsterputs</p>
+      <div class="flex items-center gap-4">
+        <a class="hover:text-sky-600" href="#boka">Boka</a>
+        <a class="hover:text-sky-600" href="#" id="toAdmin">Admin</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ADMIN (enkel lokal vy) -->
+  <section id="adminPanel" class="max-w-6xl mx-auto px-4 py-16">
+    <div class="bg-white rounded-2xl p-6 shadow border border-slate-200">
+      <div class="flex items-center justify-between gap-4">
+        <h2 class="text-2xl md:text-3xl font-bold">Admin – Bokningar (lokalt)</h2>
+        <div class="flex items-center gap-2">
+          <button id="btnExport" class="px-4 py-2 rounded-xl border border-slate-300 hover:border-sky-300">Exportera CSV</button>
+          <button id="btnClear" class="px-4 py-2 rounded-xl bg-rose-600 text-white hover:bg-rose-700">Rensa alla</button>
+        </div>
+      </div>
+      <p class="text-sm text-slate-600 mt-2">Denna vy visar bokningar som är sparade i webbläsarens <em>localStorage</em> på den här enheten. För riktig serverlagring, se kommentar i koden.</p>
+      <div class="mt-4 overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead>
+            <tr class="text-left text-slate-500 border-b">
+              <th class="py-2 pr-4">Tid</th>
+              <th class="py-2 pr-4">Namn</th>
+              <th class="py-2 pr-4">E‑post</th>
+              <th class="py-2 pr-4">Telefon</th>
+              <th class="py-2 pr-4">Adress</th>
+              <th class="py-2 pr-4">Fönster</th>
+              <th class="py-2 pr-4">In/Ut</th>
+              <th class="py-2 pr-4">Höjd</th>
+              <th class="py-2 pr-4">Pris (SEK)</th>
+              <th class="py-2 pr-4">Meddelande</th>
+            </tr>
+          </thead>
+          <tbody id="adminRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // --- Konfigurerbara prisparametrar ---
+    const CONFIG = {
+      pricePerWindowInsideOutside: 70, // SEK per fönster (in+ut) efter RUT
+      pricePerWindowOutsideOnly: 45, // SEK per fönster (endast utsida) efter RUT
+      highAccessAddonPerWindow: 15 // SEK extra per fönster vid höjd/svårtillgängligt
+    };
+
+    // Hjälp: formattering
+    const fmtSEK = (n) => new Intl.NumberFormat('sv-SE', { style:'currency', currency:'SEK', maximumFractionDigits:0 }).format(n);
+
+    // Prisräknare
+    function calcPrice({ windows, insideOutside, highAccess }) {
+      const base = (insideOutside ? CONFIG.pricePerWindowInsideOutside : CONFIG.pricePerWindowOutsideOnly) * windows;
+      const addon = highAccess ? CONFIG.highAccessAddonPerWindow * windows : 0;
+      return { base, addon, total: base + addon };
+    }
+
+    function updateCalculator() {
+      const windows = Math.max(1, parseInt(document.getElementById('calcWindows').value || '1', 10));
+      const insideOutside = document.getElementById('calcInside').checked;
+      const highAccess = document.getElementById('calcHigh').checked;
+      const { base, addon, total } = calcPrice({ windows, insideOutside, highAccess });
+      document.getElementById('pricePerWindow').textContent = fmtSEK(insideOutside ? CONFIG.pricePerWindowInsideOutside : CONFIG.pricePerWindowOutsideOnly);
+      document.getElementById('priceHigh').textContent = fmtSEK(highAccess ? CONFIG.highAccessAddonPerWindow : 0);
+      document.getElementById('priceTotal').textContent = fmtSEK(total);
+    }
+
+    document.getElementById('calcUpdate').addEventListener('click', updateCalculator);
+    updateCalculator();
+
+    // --- Bokning ---
+    const LS_KEY = 'glasklart_bookings_v1';
+
+    function loadBookings() {
+      try { return JSON.parse(localStorage.getItem(LS_KEY) || '[]'); } catch { return []; }
+    }
+
+    function saveBookings(list) {
+      localStorage.setItem(LS_KEY, JSON.stringify(list));
+    }
+
+    function addBooking(b) {
+      const list = loadBookings();
+      list.push(b);
+      saveBookings(list);
+    }
+
+    function isoLocal(date) {
+      // Return ISO string without timezone (for .ics simplicity)
+      const pad = (n) => String(n).padStart(2, '0');
+      return `${date.getFullYear()}${pad(date.getMonth()+1)}${pad(date.getDate())}T${pad(date.getHours())}${pad(date.getMinutes())}00`;
+    }
+
+    function generateICS(booking) {
+      const start = new Date(booking.datetime);
+      const end = new Date(start.getTime() + 60 * 60 * 1000); // 1h slot
+      const dtStart = isoLocal(start);
+      const dtEnd = isoLocal(end);
+      const uid = `${Date.now()}@glasklart`;
+      const title = `Fönsterputsning – ${booking.name}`;
+      const desc = (
+        `Bokning från hemsidan%0D%0A` +
+        `Namn: ${booking.name}%0D%0A` +
+        `E‑post: ${booking.email}%0D%0A` +
+        `Telefon: ${booking.phone}%0D%0A` +
+        `Adress: ${booking.address}, ${booking.zip} ${booking.city}%0D%0A` +
+        `Fönster: ${booking.windows} (in/ut: ${booking.insideOutside ? 'Ja' : 'Nej'}, höjd: ${booking.highAccess ? 'Ja' : 'Nej'})%0D%0A` +
+        `Uppskattat pris: ${fmtSEK(booking.price.total)}%0D%0A` +
+        (booking.notes ? `Meddelande: ${encodeURIComponent(booking.notes)}%0D%0A` : '')
+      );
+
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Glasklart//Booking//SV',
+        'CALSCALE:GREGORIAN',
+        'BEGIN:VEVENT',
+        `UID:${uid}`,
+        `DTSTAMP:${dtStart}`,
+        `DTSTART:${dtStart}`,
+        `DTEND:${dtEnd}`,
+        `SUMMARY:${title}`,
+        `LOCATION:${booking.address}, ${booking.zip} ${booking.city}`,
+        `DESCRIPTION:${decodeURIComponent(desc)}`,
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.getElementById('btnICS');
+      a.href = url;
+      a.download = `bokning_${start.toISOString().slice(0,16).replace(/[:T]/g,'-')}.ics`;
+    }
+
+    function buildMailto(booking) {
+      const subject = encodeURIComponent(`Bokningsförfrågan – ${booking.name}`);
+      const body = encodeURIComponent(
+        `Hej!\n\nJag vill boka fönsterputsning.\n\n` +
+        `När: ${new Date(booking.datetime).toLocaleString('sv-SE')}\n` +
+        `Adress: ${booking.address}, ${booking.zip} ${booking.city}\n` +
+        `Fönster: ${booking.windows} (in/ut: ${booking.insideOutside ? 'ja' : 'nej'}, höjd: ${booking.highAccess ? 'ja' : 'nej'})\n` +
+        `Uppskattat pris: ${fmtSEK(booking.price.total)}\n` +
+        (booking.notes ? `\nMeddelande: ${booking.notes}\n` : '') +
+        `\nHälsningar,\n${booking.name}\nTel: ${booking.phone}\nE‑post: ${booking.email}`
+      );
+      // Ändra e‑postadressen nedan till företagets adress
+      document.getElementById('btnEmail').href = `mailto:info@dittforetag.se?subject=${subject}&body=${body}`;
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.currentTarget);
+      const data = Object.fromEntries(fd.entries());
+      const insideOutside = !!fd.get('insideOutside');
+      const highAccess = !!fd.get('highAccess');
+      const windows = Math.max(1, parseInt(data.windows || '1', 10));
+
+      const price = calcPrice({ windows, insideOutside, highAccess });
+
+      const booking = {
+        createdAt: new Date().toISOString(),
+        name: data.name.trim(),
+        email: data.email.trim(),
+        phone: data.phone.trim(),
+        address: data.address.trim(),
+        zip: data.zip.trim(),
+        city: data.city.trim(),
+        windows,
+        insideOutside,
+        highAccess,
+        datetime: data.datetime,
+        notes: (data.notes || '').trim(),
+        price
+      };
+
+      addBooking(booking);
+      document.getElementById('confirm').classList.remove('hidden');
+      generateICS(booking);
+      buildMailto(booking);
+      e.currentTarget.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+
+    document.getElementById('btnReset').addEventListener('click', () => {
+      document.getElementById('bookingForm').reset();
+      document.getElementById('confirm').classList.add('hidden');
+    });
+
+    // --- Admin vy ---
+    function renderAdmin() {
+      const rows = document.getElementById('adminRows');
+      rows.innerHTML = '';
+      const list = loadBookings();
+      list.forEach((b) => {
+        const tr = document.createElement('tr');
+        tr.className = 'border-b align-top';
+        tr.innerHTML = `
+          <td class="py-2 pr-4">${new Date(b.datetime).toLocaleString('sv-SE')}</td>
+          <td class="py-2 pr-4">${escapeHtml(b.name)}</td>
+          <td class="py-2 pr-4">${escapeHtml(b.email)}</td>
+          <td class="py-2 pr-4">${escapeHtml(b.phone)}</td>
+          <td class="py-2 pr-4">${escapeHtml(b.address)}, ${escapeHtml(b.zip)} ${escapeHtml(b.city)}</td>
+          <td class="py-2 pr-4">${b.windows}</td>
+          <td class="py-2 pr-4">${b.insideOutside ? 'Ja' : 'Nej'}</td>
+          <td class="py-2 pr-4">${b.highAccess ? 'Ja' : 'Nej'}</td>
+          <td class="py-2 pr-4">${fmtSEK(b.price.total)}</td>
+          <td class="py-2 pr-4 max-w-[280px]">${escapeHtml(b.notes || '')}</td>`;
+        rows.appendChild(tr);
+      });
+    }
+
+    function exportCSV() {
+      const list = loadBookings();
+      const header = ['createdAt','datetime','name','email','phone','address','zip','city','windows','insideOutside','highAccess','price_base','price_addon','price_total','notes'];
+      const lines = [header.join(',')].concat(list.map(b => [
+        b.createdAt,
+        b.datetime,
+        '"' + (b.name||'').replaceAll('"','""') + '"',
+        b.email,
+        b.phone,
+        '"' + (b.address||'').replaceAll('"','""') + '"',
+        b.zip,
+        b.city,
+        b.windows,
+        b.insideOutside,
+        b.highAccess,
+        b.price.base,
+        b.price.addon,
+        b.price.total,
+        '"' + (b.notes||'').replaceAll('"','""') + '"'
+      ].join(',')));
+      const blob = new Blob([lines.join('\n')], { type:'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'bokningar.csv'; a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function escapeHtml(s){
+      return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
+    }
+
+    document.getElementById('btnExport').addEventListener('click', exportCSV);
+    document.getElementById('btnClear').addEventListener('click', () => {
+      if (confirm('Rensa ALLA lokala bokningar?')) { localStorage.removeItem(LS_KEY); renderAdmin(); }
+    });
+
+    // Enkel "lösenord"-prompt för admin (endast kosmetiskt)
+    function route() {
+      const isAdmin = location.hash === '#admin';
+      document.getElementById('adminPanel').style.display = isAdmin ? 'block' : 'none';
+      if (isAdmin) {
+        const ok = prompt('Ange adminlösen (för demo skriv: admin)') === 'admin';
+        if (!ok) { location.hash = '#'; return; }
+        renderAdmin();
+        window.scrollTo({ top: document.getElementById('adminPanel').offsetTop - 80, behavior: 'smooth' });
+      }
+    }
+    window.addEventListener('hashchange', route);
+    document.getElementById('toAdmin').addEventListener('click', (e) => { e.preventDefault(); location.hash = '#admin'; });
+
+    // Footer årtal
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Initial route
+    route();
+
+    // Tips: För verklig drift rekommenderas att ersätta localStorage med en enkel serverlös backend, t.ex.:
+    // 1) Netlify Forms / Vercel Serverless Function
+    // 2) Google Apps Script (skriv till Google Sheet)
+    // 3) Supabase (Postgres + Auth) – spara bokningar i tabell
+    // Se README‑kommentarer nedan för snabbguide.
+  </script>
+
+  <!-- README / SNABBGUIDE (i källkoden) -->
+  <!--
+  🛠 Så här använder du denna fil
+  1) Spara denna fil som index.html
+  2) Ladda upp till valfritt webbhotell (t.ex. Netlify, GitHub Pages, Loopia)
+  3) Ändra företagsnamn, mailadress (sök på "info@dittforetag.se"), och prisparametrar i CONFIG.
+
+  🚀 Snabb publicering med Netlify
+  - Gå till app.netlify.com, "New site from Git"
+  - Ladda upp detta repo/enfil eller drag‑and‑drop index.html till Netlify Drop
+
+  ✉️ Riktig e‑postbekräftelse
+  - Byt mailto‑länken till ditt stödärende‑system, eller
+  - Använd Netlify Forms: lägg till <form name="booking" netlify> + hidden input "form-name" och aktivera i Netlify
+
+  🗃 Lagra bokningar i Google Sheet via Apps Script (ultrakort)
+  - Skapa ett nytt Google Sheet -> Extensions -> Apps Script
+  - Klistra in en webbapp som tar emot POST och skriver till arket
+  - I index.html, byt ut addBooking() mot fetch('din-webbapp-url', {method:'POST', body: JSON.stringify(booking)})
+
+  🔒 GDPR
+  - Samla endast nödvändig data (som i formuläret). Lägg till länkade villkor och personuppgiftspolicy. Rensa lokal data regelbundet.
+  -->
+</body>
+</html>
