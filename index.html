@@ -4,32 +4,34 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>JR Allservice – Fönsterputs & Bilrengöring | Boka tid</title>
-  <meta name="description" content="JR Allservice i Haninge med omnejd. Fönsterputs, bilrengöring (inredning & utvändig där det är tillåtet), gräsklippning och flexibel allservice. Kvalitet, punktlighet och schyssta priser. Boka tid på 60 sekunder." />
+  <meta name="description" content="JR Allservice i Haninge med omnejd. Fönsterputs, bilrengöring (inredning & utvändig där det är tillåtet), gräsklippning och flexibel allservice. Kvalitet, punktlighet och schyssta priser. Boka tid snabbt." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     :root{--brand:#199a77;--brand-2:#0f766e}
     html{scroll-behavior:smooth}
     body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
     .glass{backdrop-filter:saturate(180%) blur(10px);background:rgba(255,255,255,.75)}
-    .card{border:1px solid rgb(226 232 240);box-shadow:0 10px 25px -15px rgba(2,6,23,.2)}
-    .logo-shadow{filter:drop-shadow(0 8px 20px rgba(25,154,119,.25))}
+    .card{border:1px solid rgb(226 232 240);box-shadow:0 10px 25px -15px rgba(2,6,23,.08)}
+    .logo-shadow{filter:drop-shadow(0 8px 20px rgba(25,154,119,.15))}
     .shine{background:linear-gradient(110deg,rgba(255,255,255,.0) 0%,rgba(255,255,255,.5) 20%,rgba(255,255,255,.0) 40%);background-size:250% 100%;animation:shine 2.8s linear infinite}
-    @keyframes shine{0%{background-position-x:200%}100%{background-position-x:-50%}}
-    /* Mobile sticky action bar */
-    @media (max-width: 640px){
-      #stickyBar{position:sticky;bottom:0;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-top:1px solid rgb(226 232 240)}
-    }
+    .card-hover{transition:transform .18s ease,box-shadow .18s ease}
+    .card-hover:hover{transform:translateY(-6px)}
+    .btn{transition:transform .14s ease}
+    .btn:hover{transform:translateY(-2px)}
+    .tooltip{position:relative;display:inline-block}
+    .tooltip .tip{position:absolute;left:50%;transform:translate(-50%,6px);bottom:calc(100% + 8px);background:#0f766e;color:#fff;padding:8px 10px;border-radius:8px;white-space:nowrap;opacity:0;transition:all .12s ease;pointer-events:none;font-size:13px}
+    .tooltip:hover .tip{opacity:1;transform:translate(-50%,0)}
+    @media (max-width: 640px){#stickyBar{position:sticky;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(8px);border-top:1px solid rgb(226 232 240)}}
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
-  <!-- Top bar -->
   <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3 group">
-        <!-- Inline SVG logotyp så allt finns i en fil -->
+      <a href="#" class="flex items-center gap-3">
         <svg class="w-9 h-9 logo-shadow" viewBox="0 0 64 64" aria-label="JR Allservice logotyp" role="img">
           <defs>
             <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
@@ -40,7 +42,6 @@
           <circle cx="32" cy="32" r="30" fill="url(#g)"/>
           <circle cx="32" cy="32" r="27" fill="white"/>
           <g fill="url(#g)">
-            <!-- JR monogram: båda i cirkeln -->
             <path d="M18 23h12.5c5.6 0 9.3 3.2 9.3 8.2 0 5.3-4 8.4-10.3 8.4h-4.3v-5h3.9c3.5 0 5.4-1.3 5.4-3.6 0-2.3-1.9-3.6-5.2-3.6H23V41h-5V23z"/>
             <path d="M45 23h5v18c0 6.4-4.7 10.1-12.2 10.1-3.2 0-6.2-.6-9-1.9l1.8-4.3c2.2 1 4.6 1.6 7.2 1.6 4.6 0 7.2-2.1 7.2-5.7V23z"/>
           </g>
@@ -54,224 +55,271 @@
         <a href="#tjanster" class="hover:text-[var(--brand)]">Tjänster</a>
         <a href="#priser" class="hover:text-[var(--brand)]">Priser</a>
         <a href="#policy" class="hover:text-[var(--brand)]">Policy</a>
-        <a href="#boka" class="px-3 py-1.5 rounded-full bg-[var(--brand)] text-white hover:bg-[var(--brand-2)]">Boka</a>
+        <a href="#boka" class="px-3 py-1.5 rounded-full bg-[var(--brand)] text-white hover:bg-[var(--brand-2)] btn">Boka</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-emerald-50 via-white to-white"></div>
-    <div class="max-w-6xl mx-auto px-4 py-14 md:py-22 relative">
-      <div class="grid md:grid-cols-2 gap-10 items-center">
+  <main>
+    <!-- HERO -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-emerald-50 via-white to-white"></div>
+      <div class="max-w-6xl mx-auto px-4 py-14 md:py-22 relative">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight">Kvalitet på plats. <span class="text-[var(--brand)]">Boka på 60 sek.</span></h1>
+            <p class="mt-4 text-slate-600 text-lg">Vi kommer till dig i Haninge med omnejd. Fönsterputs, bilrengöring (inredning & utvändig där det är tillåtet) och flexibel allservice – alltid med noggrannhet och schyssta priser.</p>
+            <div class="mt-6 flex gap-3">
+              <a href="#boka" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-[var(--brand)] text-white font-medium hover:bg-[var(--brand-2)] btn">Boka tid</a>
+              <a href="#priser" class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-300 font-medium hover:border-emerald-300 hover:text-[var(--brand)]">Se priser</a>
+            </div>
+            <div class="mt-4 text-sm text-slate-500">RUT-avdrag hanteras på faktura. <span class="tooltip">Inga dolda avgifter<span class="tip">RUT reducerar arbetskostnaden för hushållsnära tjänster. Slutligt belopp kan variera beroende på tillval.</span></span></div>
+          </div>
+          <div class="relative">
+            <div class="absolute -inset-6 bg-emerald-100/60 rounded-3xl rotate-1 shine"></div>
+            <img alt="Skinande fönster" class="relative rounded-3xl shadow-xl" src="https://images.unsplash.com/photo-1610147323479-7cf6bbcf1648?q=80&w=1600&auto=format&fit=crop" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Value props -->
+    <section class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-4 -mt-8 relative">
+      <div class="glass rounded-2xl p-4 card card-hover">
+        <p class="font-semibold">Snabb bokning</p>
+        <p class="text-sm text-slate-600">Bekräftelse direkt + kalenderfil (.ics). Vi återkopplar samma dag.</p>
+      </div>
+      <div class="glass rounded-2xl p-4 card card-hover">
+        <p class="font-semibold">Transparenta priser</p>
+        <p class="text-sm text-slate-600">Se uppskattat pris i räknaren. Slutligt pris bekräftas i svar från oss.</p>
+      </div>
+      <div class="glass rounded-2xl p-4 card card-hover">
+        <p class="font-semibold">Flexibel allservice</p>
+        <p class="text-sm text-slate-600">Fönster, bil, gräsmatta m.m. – vi hittar en lösning.</p>
+      </div>
+    </section>
+
+    <!-- Tjänster -->
+    <section id="tjanster" class="max-w-6xl mx-auto px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-extrabold">Tjänster</h2>
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl p-6 card card-hover">
+          <h3 class="font-semibold">Fönsterputs</h3>
+          <p class="text-sm text-slate-600 mt-1">In- & utsida, egen utrustning, skinande resultat.</p>
+          <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
+            <li>1–2 plans bostäder</li>
+            <li>Tillval: karmar, bleck, uterum</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-6 card card-hover">
+          <h3 class="font-semibold">Bilrengöring – inredning</h3>
+          <p class="text-sm text-slate-600 mt-1">Dammsugning, våttorkning, plast/vinyl, fönster invändigt.</p>
+          <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
+            <li>Fläckbehandling & mattvätt vid behov</li>
+            <li>Vi kommer till dig</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-6 card card-hover">
+          <h3 class="font-semibold">Bilrengöring – utvändig*</h3>
+          <p class="text-sm text-slate-600 mt-1">Schysst handtvätt där det är <b>tillåtet</b>.</p>
+          <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
+            <li>Endast på godkända platser (t.ex. biltvättsanläggning)</li>
+            <li>Miljöanpassade medel</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-6 card md:col-span-3 card-hover">
+          <h3 class="font-semibold">Allservice & trädgård</h3>
+          <p class="text-sm text-slate-600 mt-1">Gräsklippning, enklare trädgård, bärhjälp, skräphämtning m.m.</p>
+          <p class="text-xs text-slate-500 mt-2">Berätta vad du behöver – vi återkommer med förslag och fast pris.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Priser och räknare -->
+    <section id="priser" class="max-w-6xl mx-auto px-4 py-16">
+      <div class="grid md:grid-cols-2 gap-8 items-start">
         <div>
-          <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight">Kvalitet på plats. <span class="text-[var(--brand)]">Boka på 60 sek.</span></h1>
-          <p class="mt-4 text-slate-600 text-lg">Vi kommer till dig i Haninge med omnejd. Fönsterputs, bilrengöring (inredning & utvändig där det är tillåtet) och flexibel allservice – alltid med noggrannhet och schyssta priser.</p>
-          <div class="mt-6 flex gap-3">
-            <a href="#boka" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-[var(--brand)] text-white font-medium hover:bg-[var(--brand-2)]">Boka tid</a>
-            <a href="#priser" class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-300 font-medium hover:border-emerald-300 hover:text-[var(--brand)]">Se priser</a>
-          </div>
-          <div class="mt-4 text-sm text-slate-500">RUT‑avdrag hanteras på faktura. Inga dolda avgifter.</div>
+          <h2 class="text-2xl md:text-3xl font-extrabold">Priser (exempel)</h2>
+          <p class="text-slate-600 mt-2">Uppskattningar visas direkt. Ju mer information du anger, desto mer exakt blir uppskattningen. Priset är preliminärt tills vi bekräftar bokningen.</p>
+          <ul class="mt-4 text-sm text-slate-700 space-y-2">
+            <li>• Fönsterputs: från ca 60–90 kr / fönster beroende på storlek och tillgång.</li>
+            <li>• Bil inredning: från 600 kr (liten) upp till 850 kr (stor + djupstäd).</li>
+            <li>• Bil utvändig (tillåten plats): från 250 kr.</li>
+            <li>• Gräsklippning / allservice: offert eller timpris (ex. 3 kr/m² som riktlinje).</li>
+          </ul>
+          <p class="text-xs text-slate-500 mt-3">*Slutligt pris bekräftas via mejl från oss. Uppskattningen är nära den slutliga offereringen när alla detaljer finns.</p>
         </div>
-        <div class="relative">
-          <div class="absolute -inset-6 bg-emerald-100/60 rounded-3xl rotate-1 shine"></div>
-          <img alt="Skinande fönster" class="relative rounded-3xl shadow-xl" src="https://images.unsplash.com/photo-1610147323479-7cf6bbcf1648?q=80&w=1600&auto=format&fit=crop" />
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Value props -->
-  <section class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-4 -mt-8 relative">
-    <div class="glass rounded-2xl p-4 card">
-      <p class="font-semibold">Snabb bokning</p>
-      <p class="text-sm text-slate-600">Bekräftelse direkt + kalenderfil (.ics). Vi återkopplar samma dag.</p>
-    </div>
-    <div class="glass rounded-2xl p-4 card">
-      <p class="font-semibold">Transparenta priser</p>
-      <p class="text-sm text-slate-600">Se ungefärligt pris i räknaren. Nöjd‑kund‑garanti.</p>
-    </div>
-    <div class="glass rounded-2xl p-4 card">
-      <p class="font-semibold">Flexibel allservice</p>
-      <p class="text-sm text-slate-600">Fönster, bil, gräsmatta m.m. – vi hittar en lösning.</p>
-    </div>
-  </section>
-
-  <!-- TJÄNSTER -->
-  <section id="tjanster" class="max-w-6xl mx-auto px-4 py-16">
-    <h2 class="text-2xl md:text-3xl font-extrabold">Tjänster</h2>
-    <div class="mt-6 grid md:grid-cols-3 gap-6">
-      <div class="bg-white rounded-2xl p-6 card">
-        <h3 class="font-semibold">Fönsterputs</h3>
-        <p class="text-sm text-slate-600 mt-1">In- & utsida, egen utrustning, skinande resultat.</p>
-        <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
-          <li>1–2 plans bostäder</li>
-          <li>Tillval: karmar, bleck, uterum</li>
-        </ul>
-      </div>
-      <div class="bg-white rounded-2xl p-6 card">
-        <h3 class="font-semibold">Bilrengöring – inredning</h3>
-        <p class="text-sm text-slate-600 mt-1">Dammsugning, våttorkning, plast/vinyl, fönster invändigt.</p>
-        <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
-          <li>Fläckbehandling & mattvätt vid behov</li>
-          <li>Vi kommer till dig</li>
-        </ul>
-      </div>
-      <div class="bg-white rounded-2xl p-6 card">
-        <h3 class="font-semibold">Bilrengöring – utvändig*</h3>
-        <p class="text-sm text-slate-600 mt-1">Schysst handtvätt där det är <b>tillåtet</b>.</p>
-        <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
-          <li>Endast på godkända platser (t.ex. biltvättsanläggning)</li>
-          <li>Miljöanpassade medel</li>
-        </ul>
-      </div>
-      <div class="bg-white rounded-2xl p-6 card md:col-span-3">
-        <h3 class="font-semibold">Allservice & trädgård</h3>
-        <p class="text-sm text-slate-600 mt-1">Gräsklippning, enklare trädgård, bärhjälp, skräphämtning m.m.</p>
-        <p class="text-xs text-slate-500 mt-2">Berätta vad du behöver – vi återkommer med förslag och fast pris.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRISER / RÄKNARE -->
-  <section id="priser" class="max-w-6xl mx-auto px-4 py-16">
-    <div class="grid md:grid-cols-2 gap-8 items-start">
-      <div>
-        <h2 class="text-2xl md:text-3xl font-extrabold">Priser (exempel)</h2>
-        <p class="text-slate-600 mt-2">Ungefärliga priser efter RUT där det är tillämpligt. Använd räknaren för att se en snabb uppskattning.</p>
-        <ul class="mt-4 text-sm text-slate-700 space-y-2">
-          <li>• Fönsterputs: från ca 60–80 kr / fönster</li>
-          <li>• Bil inredning: lägen prissättning från 600 kr</li>
-          <li>• Bil utvändig (tillåten plats): från 250 kr</li>
-          <li>• Gräsklippning / allservice: offert eller timpris</li>
-        </ul>
-        <p class="text-xs text-slate-500 mt-3">*Priser varierar med storlek, tillgänglighet och tillval. Slutligt pris bekräftas vid bokning.</p>
-      </div>
-      <div class="bg-white rounded-2xl p-6 card">
-        <h3 class="font-semibold">Prisräknare</h3>
-        <div class="mt-4 grid gap-4">
-          <label class="text-sm">Välj tjänst
-            <select id="svc" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300">
-              <option value="windows">Fönsterputs</option>
-              <option value="car_interior">Bilrengöring – inredning</option>
-              <option value="car_exterior">Bilrengöring – utvändig (tillåten plats)</option>
-              <option value="lawn">Gräsklippning / allservice</option>
-            </select>
-          </label>
-          <div id="windowsFields" class="grid gap-3">
-            <label class="text-sm">Antal fönster
-              <input id="winCount" type="number" min="1" value="10" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/>
-            </label>
-            <label class="text-sm inline-flex items-center gap-2"><input id="winInside" type="checkbox" checked class="rounded"> In- & utsida</label>
-            <label class="text-sm inline-flex items-center gap-2"><input id="winHigh" type="checkbox" class="rounded"> Höghöjd / svårtillgängligt</label>
-          </div>
-          <div id="carInteriorFields" class="grid gap-3 hidden">
-            <label class="text-sm">Storlek
-              <select id="carSize" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300">
-                <option value="small">Liten</option>
-                <option value="medium" selected>Mellan</option>
-                <option value="large">Stor / SUV</option>
+        <div class="bg-white rounded-2xl p-6 card">
+          <h3 class="font-semibold">Prisräknare</h3>
+          <div class="mt-4 grid gap-4">
+            <label class="text-sm">Välj tjänst
+              <select id="svc" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300">
+                <option value="windows">Fönsterputs</option>
+                <option value="car_interior">Bilrengöring – inredning</option>
+                <option value="car_exterior">Bilrengöring – utvändig (tillåten plats)</option>
+                <option value="lawn">Gräsklippning / allservice</option>
               </select>
             </label>
-            <label class="text-sm inline-flex items-center gap-2"><input id="carDeep" type="checkbox" class="rounded"> Djupstäd / mattvätt</label>
+
+            <div id="windowsFields" class="grid gap-3">
+              <label class="text-sm">Antal fönster
+                <input id="winCount" type="number" min="1" value="10" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/>
+              </label>
+              <label class="text-sm">Storlek
+                <select id="winSize" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300">
+                  <option value="small">Liten</option>
+                  <option value="medium" selected>Mellan</option>
+                  <option value="large">Stor</option>
+                </select>
+              </label>
+              <label class="text-sm inline-flex items-center gap-2"><input id="winInside" type="checkbox" checked class="rounded"> In- & utsida</label>
+              <label class="text-sm inline-flex items-center gap-2"><input id="winHigh" type="checkbox" class="rounded"> Höghöjd / svårtillgängligt</label>
+              <label class="text-sm">Typ av bostad
+                <select id="winType" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300">
+                  <option value="apartment">Lägenhet</option>
+                  <option value="terrace">Radhus</option>
+                  <option value="villa" selected>Villa</option>
+                </select>
+              </label>
+              <label class="text-sm">Våning (om lägenhet)
+                <input id="winFloor" type="number" min="0" value="0" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/>
+              </label>
+            </div>
+
+            <div id="carInteriorFields" class="grid gap-3 hidden">
+              <label class="text-sm">Storlek
+                <select id="carSize" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300">
+                  <option value="small">Liten</option>
+                  <option value="medium" selected>Mellan</option>
+                  <option value="large">Stor / SUV</option>
+                </select>
+              </label>
+              <label class="text-sm inline-flex items-center gap-2"><input id="carDeep" type="checkbox" class="rounded"> Djupstäd / mattvätt</label>
+              <label class="text-sm">Specifika önskemål
+                <input id="carNotes" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300" placeholder="T.ex. stark lukt, djupa fläckar"/>
+              </label>
+            </div>
+
+            <div id="carExteriorFields" class="grid gap-3 hidden">
+              <p class="text-xs text-slate-600">Vi tvättar endast där det är <b>tillåtet</b> (godkänd biltvätt / spolplatta). Kunden ansvarar för platsen.</p>
+              <label class="text-sm">Paket
+                <select id="carExtPkg" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300">
+                  <option value="basic">Basic handtvätt</option>
+                  <option value="plus">Handtvätt + fälg + snabbvax</option>
+                </select>
+              </label>
+            </div>
+
+            <div id="lawnFields" class="grid gap-3 hidden">
+              <label class="text-sm">Yta (m²)
+                <input id="lawnArea" type="number" min="10" value="200" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/>
+              </label>
+              <label class="text-sm">Tidspreferens
+                <select id="lawnTime" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300">
+                  <option value="morning">Morgon</option>
+                  <option value="afternoon" selected>Eftermiddag</option>
+                  <option value="flexible">Flexibel</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="text-sm bg-slate-50 border border-slate-200 rounded-xl p-3">
+              <p>Delpris: <span id="priceBase" class="font-semibold"></span></p>
+              <p>Tillägg: <span id="priceAddon" class="font-semibold"></span></p>
+              <p class="mt-2 text-lg">Uppskattat totalpris: <span id="priceTotal" class="font-bold"></span></p>
+              <p class="text-xs text-slate-500 mt-2">Observera: detta är en uppskattning. Slutligt pris bekräftas av JR Allservice via mejl.</p>
+            </div>
+            <button id="calcUpdate" class="w-full py-2.5 rounded-xl bg-[var(--brand)] text-white font-medium hover:bg-[var(--brand-2)] btn">Uppdatera pris</button>
           </div>
-          <div id="carExteriorFields" class="grid gap-3 hidden">
-            <p class="text-xs text-slate-600">Vi tvättar endast där det är <b>tillåtet</b> (godkänd biltvätt / spolplatta). Kunden ansvarar för platsen.</p>
-            <label class="text-sm">Paket
-              <select id="carExtPkg" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300">
-                <option value="basic">Basic handtvätt</option>
-                <option value="plus">Handtvätt + fälg + snabbvax</option>
+        </div>
+      </div>
+    </section>
+
+    <!-- Policy -->
+    <section id="policy" class="max-w-6xl mx-auto px-4 py-8">
+      <div class="bg-white rounded-2xl p-6 card">
+        <h3 class="font-semibold">Miljö & policy för biltvätt</h3>
+        <p class="text-sm text-slate-700 mt-2">Utvändig biltvätt utförs <b>endast</b> där det är tillåtet enligt lokala regler, t.ex. i biltvättsanläggning eller på godkänd spolplatta med oljeavskiljare. Vi använder i första hand miljöanpassade medel.</p>
+      </div>
+    </section>
+
+    <!-- Boka (Netlify form) -->
+    <section id="boka" class="max-w-6xl mx-auto px-4 py-16">
+      <div class="bg-white rounded-2xl p-6 card">
+        <h2 class="text-2xl md:text-3xl font-extrabold">Boka tid</h2>
+        <p class="text-slate-600 mt-2">Fyll i dina uppgifter – vi bekräftar via e-post (<a class="underline" href="mailto:jr0704@protonmail.com">jr0704@protonmail.com</a>). Du får även en kalenderfil (.ics). Vi svarar alltid med slutligt pris och om begärt datum fungerar.</p>
+
+        <!-- Netlify form: name + hidden inputs required for Netlify to capture even if JS intercepts -->
+        <form id="bookingForm" name="booking" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="mt-6 grid md:grid-cols-2 gap-6">
+          <input type="hidden" name="form-name" value="booking">
+          <input type="hidden" name="price_estimated" id="hiddenPrice" value="">
+          <input type="hidden" name="price_details" id="hiddenPriceDetails" value="">
+          <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+
+          <div class="grid gap-3">
+            <label class="text-sm">Namn<input required name="name" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/></label>
+            <label class="text-sm">E-post<input required type="email" name="email" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/></label>
+            <label class="text-sm">Telefon<input required name="phone" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/></label>
+            <label class="text-sm">Adress<input required name="address" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/></label>
+            <div class="grid grid-cols-2 gap-3">
+              <label class="text-sm">Postnr<input required name="zip" pattern="\d{3}\s?\d{2}" title="Ange t.ex. 123 45" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/></label>
+              <label class="text-sm">Ort<input required name="city" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/></label>
+            </div>
+          </div>
+
+          <div class="grid gap-3">
+            <label class="text-sm">Tjänst
+              <select name="service" id="formService" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300">
+                <option value="windows">Fönsterputs</option>
+                <option value="car_interior">Bilrengöring – inredning</option>
+                <option value="car_exterior">Bilrengöring – utvändig (tillåten plats)</option>
+                <option value="lawn">Gräsklippning / allservice</option>
               </select>
             </label>
-          </div>
-          <div id="lawnFields" class="grid gap-3 hidden">
-            <label class="text-sm">Yta (m²)
-              <input id="lawnArea" type="number" min="10" value="200" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/>
+
+            <label class="text-sm">Detaljer (t.ex. antal fönster, bilstorlek, yta…)
+              <input name="details" id="formDetails" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300" placeholder="Ex: 20 fönster, 2-plans; SUV; 300 m² gräs"/>
             </label>
+
+            <label class="text-sm">Önskat datum & tid
+              <input required type="datetime-local" name="datetime" id="formDatetime" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/>
+            </label>
+
+            <label class="text-sm">Meddelande (valfritt)
+              <textarea name="notes" id="formNotes" rows="3" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300" placeholder="T.ex. uterum, svårtillgängliga fönster, tvättplats godkänd…"></textarea>
+            </label>
+
+            <div class="flex items-center gap-3">
+              <button class="flex-1 py-2.5 rounded-xl bg-[var(--brand)] text-white font-medium hover:bg-[var(--brand-2)]" type="submit">Skicka bokning</button>
+              <button class="px-4 py-2 rounded-xl border border-slate-300 hover:border-emerald-300" type="button" id="btnReset">Rensa</button>
+            </div>
+            <p class="text-xs text-slate-500">Genom att boka godkänner du våra <a class="underline" href="#policy">villkor & policy</a>. Vi återkommer via mejl med bekräftelse och slutligt pris.</p>
           </div>
-          <div class="text-sm bg-slate-50 border border-slate-200 rounded-xl p-3">
-            <p>Delpris: <span id="priceBase" class="font-semibold"></span></p>
-            <p>Tillägg: <span id="priceAddon" class="font-semibold"></span></p>
-            <p class="mt-2 text-lg">Uppskattat totalpris: <span id="priceTotal" class="font-bold"></span></p>
+        </form>
+
+        <div id="confirm" class="hidden mt-6 bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-2xl p-4">
+          <p class="font-semibold">Tack! Din bokningsförfrågan är skickad.</p>
+          <p class="text-sm mt-1">Vi har sparat en sammanfattning lokalt. Du kan ladda ned kalenderfilen (.ics) eller skicka mejl direkt.</p>
+          <div class="mt-3 flex flex-wrap gap-3">
+            <a id="btnICS" class="inline-flex items-center px-4 py-2 rounded-xl bg-emerald-600 text-white hover:bg-emerald-700" href="#">Ladda ned .ics</a>
+            <a id="btnEmail" class="inline-flex items-center px-4 py-2 rounded-xl border border-emerald-600 text-emerald-700 hover:bg-emerald-100" href="#">Skicka mejl</a>
           </div>
-          <button id="calcUpdate" class="w-full py-2.5 rounded-xl bg-[var(--brand)] text-white font-medium hover:bg-[var(--brand-2)]">Uppdatera pris</button>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- POLICY -->
-  <section id="policy" class="max-w-6xl mx-auto px-4 py-8">
-    <div class="bg-white rounded-2xl p-6 card">
-      <h3 class="font-semibold">Miljö & policy för biltvätt</h3>
-      <p class="text-sm text-slate-700 mt-2">Utvändig biltvätt utförs <b>endast</b> där det är tillåtet enligt lokala regler, t.ex. i biltvättsanläggning eller på godkänd spolplatta med oljeavskiljare. Vi använder i första hand miljöanpassade medel.</p>
-    </div>
-  </section>
-
-  <!-- BOKNING -->
-  <section id="boka" class="max-w-6xl mx-auto px-4 py-16">
-    <div class="bg-white rounded-2xl p-6 card">
-      <h2 class="text-2xl md:text-3xl font-extrabold">Boka tid</h2>
-      <p class="text-slate-600 mt-2">Fyll i dina uppgifter – vi bekräftar via e‑post (<a class="underline" href="mailto:support@jrallservice.com">support@jrallservice.com</a>). Du får även en kalenderfil (.ics).</p>
-      <form id="bookingForm" class="mt-6 grid md:grid-cols-2 gap-6">
-        <div class="grid gap-3">
-          <label class="text-sm">Namn<input required name="name" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/></label>
-          <label class="text-sm">E‑post<input required type="email" name="email" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/></label>
-          <label class="text-sm">Telefon<input required name="phone" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/></label>
-          <label class="text-sm">Adress<input required name="address" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/></label>
-          <div class="grid grid-cols-2 gap-3">
-            <label class="text-sm">Postnr<input required name="zip" pattern="\d{3}\s?\d{2}" title="Ange t.ex. 123 45" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/></label>
-            <label class="text-sm">Ort<input required name="city" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/></label>
-          </div>
-        </div>
-        <div class="grid gap-3">
-          <label class="text-sm">Tjänst
-            <select name="service" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300">
-              <option value="windows">Fönsterputs</option>
-              <option value="car_interior">Bilrengöring – inredning</option>
-              <option value="car_exterior">Bilrengöring – utvändig (tillåten plats)</option>
-              <option value="lawn">Gräsklippning / allservice</option>
-            </select>
-          </label>
-          <label class="text-sm">Detaljer (t.ex. antal fönster, bilstorlek, yta…)
-            <input name="details" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300" placeholder="Ex: 20 fönster, 2‑plans; SUV; 300 m² gräs"/>
-          </label>
-          <label class="text-sm">Önskat datum & tid
-            <input required type="datetime-local" name="datetime" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300"/>
-          </label>
-          <label class="text-sm">Meddelande (valfritt)
-            <textarea name="notes" rows="3" class="mt-1 w-full rounded-xl border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-300" placeholder="T.ex. uterum, svårtillgängliga fönster, tvättplats godkänd…"></textarea>
-          </label>
-          <div class="flex items-center gap-3">
-            <button class="flex-1 py-2.5 rounded-xl bg-[var(--brand)] text-white font-medium hover:bg-[var(--brand-2)]" type="submit">Skicka bokning</button>
-            <button class="px-4 py-2 rounded-xl border border-slate-300 hover:border-emerald-300" type="button" id="btnReset">Rensa</button>
-          </div>
-          <p class="text-xs text-slate-500">Genom att boka godkänner du våra <a class="underline" href="#policy">villkor & policy</a>.</p>
-        </div>
-      </form>
-
-      <!-- Bekräftelse -->
-      <div id="confirm" class="hidden mt-6 bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-2xl p-4">
-        <p class="font-semibold">Tack! Din bokningsförfrågan är skickad.</p>
-        <p class="text-sm mt-1">En sammanfattning är sparad lokalt på denna enhet. Ladda ned kalenderfil och/eller skicka mejl till oss.</p>
-        <div class="mt-3 flex flex-wrap gap-3">
-          <a id="btnICS" class="inline-flex items-center px-4 py-2 rounded-xl bg-emerald-600 text-white hover:bg-emerald-700" href="#">Ladda ned .ics</a>
-          <a id="btnEmail" class="inline-flex items-center px-4 py-2 rounded-xl border border-emerald-600 text-emerald-700 hover:bg-emerald-100" href="#">Skicka mejl</a>
-        </div>
+    <!-- FAQ -->
+    <section class="max-w-6xl mx-auto px-4 pb-16">
+      <h2 class="text-2xl md:text-3xl font-extrabold">Vanliga frågor</h2>
+      <div class="mt-6 grid md:grid-cols-2 gap-6 text-sm text-slate-700">
+        <div class="bg-white rounded-2xl p-6 card"><p class="font-semibold">Ingår RUT?</p><p>Ja, vi hanterar RUT på faktura för arbeten som omfattas (t.ex. fönsterputs i hemmet).</p></div>
+        <div class="bg-white rounded-2xl p-6 card"><p class="font-semibold">Måste jag vara hemma?</p><p>För insida: ja. För utsida: inte nödvändigt om tillgång finns.</p></div>
+        <div class="bg-white rounded-2xl p-6 card"><p class="font-semibold">Tar ni med utrustning?</p><p>Ja, vi tar med allt som behövs för uppdraget.</p></div>
+        <div class="bg-white rounded-2xl p-6 card"><p class="font-semibold">Var kör ni?</p><p>Utgångspunkt Haninge – fråga gärna om andra områden.</p></div>
       </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="max-w-6xl mx-auto px-4 pb-16">
-    <h2 class="text-2xl md:text-3xl font-extrabold">Vanliga frågor</h2>
-    <div class="mt-6 grid md:grid-cols-2 gap-6 text-sm text-slate-700">
-      <div class="bg-white rounded-2xl p-6 card"><p class="font-semibold">Ingår RUT?</p><p>Ja, vi hanterar RUT på faktura för arbeten som omfattas (t.ex. fönsterputs i hemmet).</p></div>
-      <div class="bg-white rounded-2xl p-6 card"><p class="font-semibold">Måste jag vara hemma?</p><p>För insida: ja. För utsida: inte nödvändigt om tillgång finns.</p></div>
-      <div class="bg-white rounded-2xl p-6 card"><p class="font-semibold">Tar ni med utrustning?</p><p>Ja, vi tar med allt som behövs för uppdraget.</p></div>
-      <div class="bg-white rounded-2xl p-6 card"><p class="font-semibold">Var kör ni?</p><p>Utgångspunkt Haninge – fråga gärna om andra områden.</p></div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- Sticky mobile action bar -->
   <div id="stickyBar" class="sm:hidden px-4 py-3 flex items-center justify-between">
@@ -279,10 +327,10 @@
     <a href="#boka" class="px-4 py-2 rounded-xl bg-[var(--brand)] text-white font-medium">Boka</a>
   </div>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer class="border-t border-slate-200 bg-white">
     <div class="max-w-6xl mx-auto px-4 py-8 text-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-      <p>© <span id="year"></span> JR Allservice – <a class="underline" href="mailto:support@jrallservice.com">support@jrallservice.com</a> · <a class="underline" href="https://jrallservice.com" target="_blank" rel="noopener">jrallservice.com</a></p>
+      <p>© <span id="year"></span> JR Allservice – <a class="underline" href="mailto:jr0704@protonmail.com">jr0704@protonmail.com</a> · <a class="underline" href="https://jrallservice.com" target="_blank" rel="noopener">jrallservice.com</a></p>
       <div class="flex items-center gap-4">
         <a class="hover:text-[var(--brand)]" href="#boka">Boka</a>
         <a class="hover:text-[var(--brand)]" href="#" id="toAdmin">Admin</a>
@@ -290,7 +338,7 @@
     </div>
   </footer>
 
-  <!-- ADMIN (lokal, enkel) -->
+  <!-- Admin (lokal) -->
   <section id="adminPanel" class="max-w-6xl mx-auto px-4 py-16 hidden">
     <div class="bg-white rounded-2xl p-6 card">
       <div class="flex items-center justify-between gap-4">
@@ -305,7 +353,7 @@
         <table class="min-w-full text-sm">
           <thead>
             <tr class="text-left text-slate-500 border-b">
-              <th class="py-2 pr-4">Tid</th><th class="py-2 pr-4">Namn</th><th class="py-2 pr-4">E‑post</th><th class="py-2 pr-4">Telefon</th><th class="py-2 pr-4">Adress</th><th class="py-2 pr-4">Tjänst</th><th class="py-2 pr-4">Detaljer</th><th class="py-2 pr-4">Pris</th><th class="py-2 pr-4">Meddelande</th>
+              <th class="py-2 pr-4">Tid</th><th class="py-2 pr-4">Namn</th><th class="py-2 pr-4">E-post</th><th class="py-2 pr-4">Telefon</th><th class="py-2 pr-4">Adress</th><th class="py-2 pr-4">Tjänst</th><th class="py-2 pr-4">Detaljer</th><th class="py-2 pr-4">Pris</th><th class="py-2 pr-4">Meddelande</th>
             </tr>
           </thead>
           <tbody id="adminRows"></tbody>
@@ -315,12 +363,12 @@
   </section>
 
   <script>
-    // ------- Prislogik (enkla exempelvärden) -------
+    // ---- Prisinställningar och räknare ----
     const PRICE = {
-      windows: { perWindowInsideOutside: 70, perWindowOutsideOnly: 45, highAddonPerWindow: 15 },
+      windows: { baseSmall: 60, baseMedium: 75, baseLarge: 90, highAddonPerWindow: 15, outsideOnlyFactor: 0.7 },
       car_interior: { base: { small: 600, medium: 700, large: 850 }, deep: 300 },
       car_exterior: { basic: 250, plus: 350 },
-      lawn: { perM2: 3 } // exempeltaxa
+      lawn: { perM2: 3 }
     };
     const fmtSEK = n => new Intl.NumberFormat('sv-SE', {style:'currency', currency:'SEK', maximumFractionDigits:0}).format(n);
 
@@ -332,19 +380,25 @@
       lawn: document.getElementById('lawnFields')
     };
 
-    function showFields() {
-      Object.values(sections).forEach(el => el.classList.add('hidden'));
-      const id = svc.value; sections[id].classList.remove('hidden');
-    }
+    function showFields(){ Object.values(sections).forEach(el => el.classList.add('hidden')); const id = svc.value; sections[id].classList.remove('hidden'); }
     svc.addEventListener('change', showFields);
 
-    function calcPrice() {
+    function calcPrice(){
       const id = svc.value; let base = 0, addon = 0;
       if (id === 'windows') {
         const count = Math.max(1, parseInt(document.getElementById('winCount').value||'1',10));
+        const size = document.getElementById('winSize').value;
         const inside = document.getElementById('winInside').checked;
         const high = document.getElementById('winHigh').checked;
-        base = (inside ? PRICE.windows.perWindowInsideOutside : PRICE.windows.perWindowOutsideOnly) * count;
+        const type = document.getElementById('winType').value;
+        const floor = Math.max(0, parseInt(document.getElementById('winFloor').value||'0',10));
+        let per = PRICE.windows.baseMedium;
+        if (size==='small') per = PRICE.windows.baseSmall;
+        if (size==='large') per = PRICE.windows.baseLarge;
+        base = per * count;
+        if (!inside) base = Math.round(base * PRICE.windows.outsideOnlyFactor);
+        if (type==='apartment' && floor>2) base = Math.round(base * 1.12);
+        if (type==='terrace') base = Math.round(base * 1.03);
         addon = high ? PRICE.windows.highAddonPerWindow * count : 0;
       }
       if (id === 'car_interior') {
@@ -364,86 +418,158 @@
       document.getElementById('priceBase').textContent = fmtSEK(base);
       document.getElementById('priceAddon').textContent = fmtSEK(addon);
       document.getElementById('priceTotal').textContent = fmtSEK(base + addon);
-      return {id, base, addon, total: base + addon};
+      return { id, base, addon, total: base + addon };
     }
     document.getElementById('calcUpdate').addEventListener('click', calcPrice);
     showFields(); calcPrice();
 
-    // ------- Bokningslogik -------
+    // ---- Bokning (local + Netlify) ----
     const LS_KEY = 'jr_allservice_bookings_v1';
     const bookingForm = document.getElementById('bookingForm');
     const confirmBox = document.getElementById('confirm');
 
     function loadBookings(){ try{return JSON.parse(localStorage.getItem(LS_KEY)||'[]')}catch{return []} }
     function saveBookings(list){ localStorage.setItem(LS_KEY, JSON.stringify(list)); }
-    function addBooking(b){ const list=loadBookings(); list.push(b); saveBookings(list); }
+    function addBooking(b){ const list = loadBookings(); list.unshift(b); saveBookings(list); }
 
-    function isoLocal(date){ const pad=n=>String(n).padStart(2,'0'); return `${date.getFullYear()}${pad(date.getMonth()+1)}${pad(date.getDate())}T${pad(date.getHours())}${pad(date.getMinutes())}00`; }
+    async function submitToNetlify(formData){
+      // POST to root so Netlify Forms picks up the submission
+      try{
+        const res = await fetch('/', { method: 'POST', body: formData });
+        return res.ok;
+      }catch(err){
+        console.warn('Netlify submit error', err);
+        return false;
+      }
+    }
+
+    function isoLocal(date){
+      const pad = n => String(n).padStart(2,'0');
+      return `${date.getFullYear()}${pad(date.getMonth()+1)}${pad(date.getDate())}T${pad(date.getHours())}${pad(date.getMinutes())}00`;
+    }
 
     function generateICS(booking){
-      const start=new Date(booking.datetime); const end=new Date(start.getTime()+60*60*1000);
-      const dtStart=isoLocal(start), dtEnd=isoLocal(end); const uid=`${Date.now()}@jrallservice.com`;
-      const title=`${booking.serviceLabel} – ${booking.name}`;
-      const desc=[
+      const start = new Date(booking.datetime);
+      const end = new Date(start.getTime() + 60*60*1000);
+      const dtStart = isoLocal(start), dtEnd = isoLocal(end);
+      const uid = `${Date.now()}@jrallservice.com`;
+      const title = `${booking.serviceLabel} – ${booking.name}`;
+      const desc = [
         `Bokning via jrallservice.com`,
         `Namn: ${booking.name}`,
-        `E‑post: ${booking.email}`,
+        `E-post: ${booking.email}`,
         `Telefon: ${booking.phone}`,
         `Adress: ${booking.address}, ${booking.zip} ${booking.city}`,
         `Tjänst: ${booking.serviceLabel}`,
         `Detaljer: ${booking.details || ''}`,
         `Uppskattat pris: ${fmtSEK(booking.price.total)}`,
-        booking.notes?`Meddelande: ${booking.notes}`:''
-      ].filter(Boolean).join(' \n ');
-      const ics=[
+        booking.notes ? `Meddelande: ${booking.notes}` : ''
+      ].filter(Boolean).join('\n');
+
+      const ics = [
         'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//JR Allservice//Booking//SV','CALSCALE:GREGORIAN','BEGIN:VEVENT',
-        `UID:${uid}`,`DTSTAMP:${dtStart}`,`DTSTART:${dtStart}`,`DTEND:${dtEnd}`,`SUMMARY:${title}`,
-        `LOCATION:${booking.address}, ${booking.zip} ${booking.city}`,`DESCRIPTION:${desc}`,'END:VEVENT','END:VCALENDAR'
+        `UID:${uid}`,
+        `DTSTAMP:${dtStart}`,
+        `DTSTART:${dtStart}`,
+        `DTEND:${dtEnd}`,
+        `SUMMARY:${title}`,
+        `LOCATION:${booking.address}, ${booking.zip} ${booking.city}`,
+        `DESCRIPTION:${desc}`,
+        'END:VEVENT','END:VCALENDAR'
       ].join('\r\n');
-      const blob=new Blob([ics],{type:'text/calendar;charset=utf-8'}); const url=URL.createObjectURL(blob);
-      const a=document.getElementById('btnICS'); a.href=url; a.download=`jr-allservice_${start.toISOString().slice(0,16).replace(/[:T]/g,'-')}.ics`;
+
+      const blob = new Blob([ics], { type:'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.getElementById('btnICS');
+      a.href = url;
+      a.download = `jr-allservice_${start.toISOString().slice(0,16).replace(/[:T]/g,'-')}.ics`;
     }
 
     function buildMailto(booking){
-      const subject=encodeURIComponent(`Bokningsförfrågan – ${booking.serviceLabel}`);
-      const body=encodeURIComponent(
-        `Hej JR Allservice!\n\n`+
-        `Jag vill boka: ${booking.serviceLabel}.\n`+
-        `När: ${new Date(booking.datetime).toLocaleString('sv-SE')}\n`+
-        `Adress: ${booking.address}, ${booking.zip} ${booking.city}\n`+
-        `Detaljer: ${booking.details || '-'}\n`+
-        `Uppskattat pris: ${fmtSEK(booking.price.total)}\n`+
-        (booking.notes?`\nMeddelande: ${booking.notes}\n`:``)+
-        `\nHälsningar,\n${booking.name}\nTel: ${booking.phone}\nE‑post: ${booking.email}`
-      );
-      document.getElementById('btnEmail').href=`mailto:support@jrallservice.com?subject=${subject}&body=${body}`;
+      const subject = encodeURIComponent(`Bokningsförfrågan – ${booking.serviceLabel}`);
+      const body = encodeURIComponent([
+        `Hej JR Allservice!`,
+        `Jag vill boka: ${booking.serviceLabel}.`,
+        `När: ${new Date(booking.datetime).toLocaleString('sv-SE')}`,
+        `Adress: ${booking.address}, ${booking.zip} ${booking.city}`,
+        `Detaljer: ${booking.details || '-'}`,
+        `Uppskattat pris: ${fmtSEK(booking.price.total)}`,
+        booking.notes ? `Meddelande: ${booking.notes}` : '',
+        `Hälsningar,`,
+        `${booking.name}`,
+        `Tel: ${booking.phone}`,
+        `E-post: ${booking.email}`
+      ].filter(Boolean).join('\n'));
+      document.getElementById('btnEmail').href = `mailto:jr0704@protonmail.com?subject=${subject}&body=${body}`;
     }
 
-    const SERVICE_LABELS = { windows:'Fönsterputs', car_interior:'Bilrengöring – inredning', car_exterior:'Bilrengöring – utvändig (tillåten plats)', lawn:'Gräsklippning / allservice' };
+    const SERVICE_LABELS = {
+      windows: 'Fönsterputs',
+      car_interior: 'Bilrengöring – inredning',
+      car_exterior: 'Bilrengöring – utvändig (tillåten plats)',
+      lawn: 'Gräsklippning / allservice'
+    };
 
-    bookingForm.addEventListener('submit', (e)=>{
-      e.preventDefault(); const fd=new FormData(bookingForm); const data=Object.fromEntries(fd.entries());
-      // Använd kalkylatorns resultat för pris
-      const price=calcPrice();
-      const booking={
-        createdAt:new Date().toISOString(), name:data.name.trim(), email:data.email.trim(), phone:data.phone.trim(),
-        address:data.address.trim(), zip:data.zip.trim(), city:data.city.trim(), service:data.service,
-        serviceLabel:SERVICE_LABELS[data.service] || data.service, details:(data.details||'').trim(), datetime:data.datetime,
-        notes:(data.notes||'').trim(), price
+    bookingForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      // beräkna pris med räknaren
+      const price = calcPrice();
+
+      // fyll formdata (inkl. hidden price) och skicka till Netlify
+      const form = e.currentTarget;
+      const fd = new FormData(form);
+      fd.set('price_estimated', String(price.total));
+      fd.set('price_details', JSON.stringify(price));
+
+      const booking = {
+        createdAt: new Date().toISOString(),
+        name: (fd.get('name')||'').toString().trim(),
+        email: (fd.get('email')||'').toString().trim(),
+        phone: (fd.get('phone')||'').toString().trim(),
+        address: (fd.get('address')||'').toString().trim(),
+        zip: (fd.get('zip')||'').toString().trim(),
+        city: (fd.get('city')||'').toString().trim(),
+        service: fd.get('service'),
+        serviceLabel: SERVICE_LABELS[fd.get('service')] || fd.get('service'),
+        details: (fd.get('details')||'').toString().trim(),
+        datetime: fd.get('datetime'),
+        notes: (fd.get('notes')||'').toString().trim(),
+        price
       };
-      addBooking(booking); generateICS(booking); buildMailto(booking);
+
+      // spara lokalt (adminvy)
+      addBooking(booking);
+
+      // generera .ics + mailto-länk
+      generateICS(booking);
+      buildMailto(booking);
+
+      // skicka till Netlify
+      const ok = await submitToNetlify(fd);
+      if (!ok) console.warn('Netlify submit misslyckades — kontrollera Netlify Forms konfiguration.');
+
+      // visa bekräftelse
       confirmBox.classList.remove('hidden');
-      confirmBox.scrollIntoView({behavior:'smooth', block:'center'});
+      confirmBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // nollställ formulär med liten delay
+      setTimeout(() => { form.reset(); showFields(); calcPrice(); }, 700);
     });
 
-    document.getElementById('btnReset').addEventListener('click',()=>{ bookingForm.reset(); confirmBox.classList.add('hidden'); });
+    document.getElementById('btnReset').addEventListener('click', () => {
+      bookingForm.reset();
+      confirmBox.classList.add('hidden');
+      showFields();
+      calcPrice();
+    });
 
-    // ------- Adminvy -------
+    // ---- Admin (lokal) ----
     function renderAdmin(){
-      const rows=document.getElementById('adminRows'); if(!rows) return; rows.innerHTML='';
-      loadBookings().forEach(b=>{
-        const tr=document.createElement('tr'); tr.className='border-b align-top';
-        tr.innerHTML=`<td class='py-2 pr-4'>${new Date(b.datetime).toLocaleString('sv-SE')}</td>
+      const rows = document.getElementById('adminRows'); if(!rows) return;
+      rows.innerHTML = '';
+      loadBookings().forEach(b => {
+        const tr = document.createElement('tr'); tr.className = 'border-b align-top';
+        tr.innerHTML = `<td class='py-2 pr-4'>${new Date(b.datetime).toLocaleString('sv-SE')}</td>
           <td class='py-2 pr-4'>${escapeHtml(b.name)}</td>
           <td class='py-2 pr-4'>${escapeHtml(b.email)}</td>
           <td class='py-2 pr-4'>${escapeHtml(b.phone)}</td>
@@ -456,30 +582,49 @@
       });
     }
     function exportCSV(){
-      const list=loadBookings(); const header=['createdAt','datetime','name','email','phone','address','zip','city','service','details','price_total','notes'];
-      const lines=[header.join(',')].concat(list.map(b=>[
-        b.createdAt,b.datetime,'"'+(b.name||'').replaceAll('"','""')+'"',b.email,b.phone,'"'+(b.address||'').replaceAll('"','""')+'"',b.zip,b.city,b.serviceLabel,'"'+(b.details||'').replaceAll('"','""')+'"',(b.price||{}).total||0,'"'+(b.notes||'').replaceAll('"','""')+'"'
+      const list = loadBookings();
+      const header = ['createdAt','datetime','name','email','phone','address','zip','city','service','details','price_total','notes'];
+      const lines = [header.join(',')].concat(list.map(b => [
+        b.createdAt,
+        b.datetime,
+        '"' + (b.name||'').replaceAll('"','""') + '"',
+        b.email,
+        b.phone,
+        '"' + (b.address||'').replaceAll('"','""') + '"',
+        b.zip,
+        b.city,
+        b.serviceLabel,
+        '"' + (b.details||'').replaceAll('"','""') + '"',
+        (b.price||{}).total||0,
+        '"' + (b.notes||'').replaceAll('"','""') + '"'
       ].join(',')));
-      const blob=new Blob([lines.join('\n')],{type:'text/csv;charset=utf-8;'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='jr-allservice-bokningar.csv'; a.click(); URL.revokeObjectURL(url);
+      const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'jr-allservice-bokningar.csv'; a.click(); URL.revokeObjectURL(url);
     }
-    function escapeHtml(s){return (s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));}
+    function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
     document.getElementById('btnExport').addEventListener('click', exportCSV);
-    document.getElementById('btnClear').addEventListener('click',()=>{ if(confirm('Rensa ALLA lokala bokningar?')){ localStorage.removeItem(LS_KEY); renderAdmin(); }});
+    document.getElementById('btnClear').addEventListener('click', () => { if (confirm('Rensa ALLA lokala bokningar?')) { localStorage.removeItem(LS_KEY); renderAdmin(); } });
 
-    function route(){ const isAdmin=location.hash==='#admin'; document.getElementById('adminPanel').classList.toggle('hidden', !isAdmin); if(isAdmin){ const ok=prompt('Ange adminlösen (demo: admin)')==='admin'; if(!ok){ location.hash='#'; return; } renderAdmin(); window.scrollTo({ top: document.getElementById('adminPanel').offsetTop - 80, behavior:'smooth'});} }
+    function route(){ const isAdmin = location.hash === '#admin'; document.getElementById('adminPanel').classList.toggle('hidden', !isAdmin); if (isAdmin) { const ok = prompt('Ange adminlösen (demo: admin)') === 'admin'; if (!ok) { location.hash = '#'; return; } renderAdmin(); window.scrollTo({ top: document.getElementById('adminPanel').offsetTop - 80, behavior: 'smooth' }); } }
     window.addEventListener('hashchange', route);
-    document.getElementById('toAdmin').addEventListener('click',e=>{e.preventDefault(); location.hash='#admin'});
+    document.getElementById('toAdmin').addEventListener('click', e => { e.preventDefault(); location.hash = '#admin'; });
 
-    document.getElementById('year').textContent=new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ------- SEO Structured Data -------
-    const ld={
-      '@context':'https://schema.org', '@type':'LocalBusiness', name:'JR Allservice', url:'https://jrallservice.com', email:'support@jrallservice.com',
-      description:'Fönsterputs, bilrengöring (inredning & utvändig där det är tillåtet), gräsklippning & flexibel allservice i Haninge med omnejd.',
-      areaServed:{'@type':'AdministrativeArea', name:'Haninge'}, slogan:'Din vardag, vår service'
+    // Schema (JSON-LD)
+    const ld = {
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      name: 'JR Allservice',
+      url: 'https://jrallservice.com',
+      email: 'jr0704@protonmail.com',
+      description: 'Fönsterputs, bilrengöring (inredning & utvändig där det är tillåtet), gräsklippning & flexibel allservice i Haninge med omnejd.',
+      areaServed: { '@type': 'AdministrativeArea', name: 'Haninge' },
+      slogan: 'Din vardag, vår service'
     };
-    const script=document.createElement('script'); script.type='application/ld+json'; script.textContent=JSON.stringify(ld); document.head.appendChild(script);
+    const s = document.createElement('script'); s.type = 'application/ld+json'; s.textContent = JSON.stringify(ld); document.head.appendChild(s);
   </script>
 </body>
 </html>
